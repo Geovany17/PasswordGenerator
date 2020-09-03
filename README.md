@@ -13,4 +13,4 @@ the user receives a series of prompt messages ,asking them for the specification
 
 This project has been deployed to GitHub Pages.
 
-# i had to make different repos and i loss all my commits
+# i had to make different repos and i lost all my commits
