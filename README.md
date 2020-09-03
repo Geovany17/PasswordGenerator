@@ -12,3 +12,5 @@ then you have to click generate password to start generating following the steps
 the user receives a series of prompt messages ,asking them for the specifications to generate a password
 
 This project has been deployed to GitHub Pages.
+
+# i had to make different repos and i loss all my commits
