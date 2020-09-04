@@ -9,60 +9,18 @@ var confirmNumber;
 var confirmCharacter;
 var confirmUppercase;
 var confirmLowercase;
-
-//=======================================================================//
-// Special characters //
-//=======================================================================//
-
-character = [
-
-  "!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"
-
-];
-
-//=======================================================================//
-// NUMBERS //
-//=======================================================================//
-
-number = [
-
-  1, 2, 3, 4, 5, 6, 7, 8, 9
-
-];
-
-//=======================================================================//
-// LETTERS //
-//=======================================================================//
-
-
-letters = [
-
-  "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-
-];
-
-
-//=======================================================================//
-//  Uppercase conversion //
-//=======================================================================//
-
-
-upper = [];
 var choices;
 
-//=======================================================================//
-// //  letters to uppercase 
-//=======================================================================//
+//================================================
+//DataSets //
+//================================================
+lettersDataSet = "zxcvbnmasdfghjklqwertyuiop";
+numbersDataset = "1234567890";
+specialCharDataset = "~!@#$%^&*()_+=-`,./;[]<>?:{}|";
+upperCaseDataSet = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
-var toUpper = function (x) {
-  return x.toUpperCase();
-};
 
-//=======================================================================//
-//  variable for uppercase 
-//=======================================================================//
 
-letters2 = letters.map(toUpper);
 
 var get = document.querySelector("#generate");
 
@@ -115,115 +73,37 @@ function generatePassword() {
     //=========================================================//
 
     confirmNumber = confirm("Will this contain numbers?");
+    if (confirmNumber) { choices += numbersDataset; } //ADD NUMBERS DATASET TO CHOICES
     confirmCharacter = confirm("Will this contain special characters?");
+    if (confirmCharacter) { choices += specialCharDataset; } //ADD SPECIAL CHARS TO CHOICES
     confirmUppercase = confirm("Will this contain Uppercase letters?");
+    if (confirmUppercase) { choices += upperCaseDataSet; } //ADD UPPER CASE DATASET TO CHOICES
     confirmLowercase = confirm("Will this contain Lowercase letters?");
+    if (confirmLowercase) { choices += lettersDataSet } //ADD LLETTERS DATASET TO CHOICES
   };
-
-
-  //============================================================//
-  // =======================|Aqui estan los else if |========================== //
-  //=========== quiero refactorizar - I want to refactor this if else        ==  ==============================statements======================== //
-  //============================================================//
-
 
   if (!confirmCharacter && !confirmNumber && !confirmUppercase && !confirmLowercase) {
-    choices = alert("You must choose a criteria!");
+    var validationMessage = "You must choose a criteria!"
+    UserInput(validationMessage);
+    return validationMessage;
 
   }
-  //=======================================================================//
-  // First if statement that uses user input prompts to determine choices //
-  // Else if for 4 positive options //
-  //======================================================================//
+  else {
+    for (var i = 0; i < pwd; i++) {
+      var pickChoices = choices[Math.floor(Math.random() * choices.length)];
+      password.push(pickChoices);
+    }
 
+    //================================================================//
+    // This joins the password array and converts it to a string //
+    // Worked with a tutor to incorporate this option //
+    //================================================================//
 
-  else if (confirmCharacter && confirmNumber && confirmUppercase && confirmLowercase) {
-
-    choices = character.concat(number, letters, letters2);
-  }
-
-  //===================================================//
-  // Else if for 3 positive options //
-  //===================================================//
-
-  else if (confirmCharacter && confirmNumber && confirmUppercase) {
-    choices = character.concat(number, letters2);
-  }
-  else if (confirmCharacter && confirmNumber && confirmLowercase) {
-    choices = character.concat(number, letters);
-  }
-  else if (confirmCharacter && confirmLowercase && confirmUppercase) {
-    choices = character.concat(letters, letters2);
-  }
-  else if (confirmNumber && confirmLowercase && confirmUppercase) {
-    choices = number.concat(letters, letters2);
-  }
-
-  //=====================================================//
-  // Else if for 2 positive options //
-  //=====================================================//
-
-  else if (confirmCharacter && confirmNumber) {
-    choices = character.concat(number);
-
-  } else if (confirmCharacter && confirmLowercase) {
-    choices = character.concat(letters);
-
-  } else if (confirmCharacter && confirmUppercase) {
-    choices = character.concat(letters2);
-  }
-  else if (confirmLowercase && confirmNumber) {
-    choices = letters.concat(number);
-
-  } else if (confirmLowercase && confirmUppercase) {
-    choices = letters.concat(letters2);
-
-  } else if (confirmNumber && confirmUppercase) {
-    choices = number.concat(letters2);
-  }
-
-  //===============================================//
-  // Else if for 1 positive option //
-  //===============================================//
-
-  else if (confirmCharacter) {
-    choices = character;
-  }
-
-  else if (confirmNumber) {
-    choices = number;
-  }
-
-  else if (confirmLowercase) {
-    choices = letters;
-  }
-
-  //======================================================//
-  // Created upper variable to fill uppercase conversion //
-  //======================================================//
-
-  else if (confirmUppercase) {
-    choices = upper.concat(letters2);
+    var pswdStr = password.join("");
+    UserInput(pswdStr);
+    return pswdStr;
   };
 
-  //===============================================================//
-  // Start random selection variables: //
-  // Random selection for all variables: //
-  //===============================================================//
-
-  for (var i = 0; i < pwd; i++) {
-    var pickChoices = choices[Math.floor(Math.random() * choices.length)];
-    password.push(pickChoices);
-  }
-
-  //================================================================//
-  // This joins the password array and converts it to a string //
-  // Worked with a tutor to incorporate this option //
-  //================================================================//
-
-  var pswdStr = password.join("");
-  UserInput(pswdStr);
-  return pswdStr;
 }
 
 //=====================================================//
@@ -251,6 +131,5 @@ function set_ie_alert() {
     vb_alert(msg_str, title_txt)
   }
 }
-
 
 

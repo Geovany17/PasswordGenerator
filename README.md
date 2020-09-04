@@ -14,3 +14,8 @@ the user receives a series of prompt messages ,asking them for the specification
 This project has been deployed to GitHub Pages.
 
 # i had to make different repos and i lost all my commits
+
+##new update
+i worked with a tutor to refactor my code ,
+i elimate the repetition of the if else statements
+using string concatenation
