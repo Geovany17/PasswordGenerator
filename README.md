@@ -1,4 +1,4 @@
-# schoolWork
+# PasswordGenerator
 
 ##Password Generator
 This project was a homework assignment Penn LPS coding bootcamp.
